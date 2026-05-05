@@ -10,7 +10,7 @@
 <style>
 body {
   margin: 0;
-  overflow: hidden;
+  overflow-x: hidden;
   font-family: 'Inter', sans-serif;
   color: white;
 }
@@ -50,6 +50,25 @@ canvas {
   text-decoration: none;
   color: white;
 }
+
+.section {
+  padding: 100px 20px;
+  text-align: center;
+}
+
+.skills span {
+  display: inline-block;
+  margin: 10px;
+  padding: 10px 20px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.1);
+  transition: 0.3s;
+}
+
+.skills span:hover {
+  background: #6366f1;
+  transform: scale(1.1);
+}  
 </style>
 </head>
 
@@ -62,6 +81,30 @@ canvas {
     <a href="#" class="btn">View Projects</a>
   </div>
 </div>
+
+<section id="about" class="section">
+  <div class="glass">
+    <h2>About Me</h2>
+    <p>
+      I'm a passionate <b>Data Science Enthusiast</b> who loves working with data 
+      and building machine learning models to solve real-world problems.
+    </p>
+  </div>
+</section>
+
+<section id="skills" class="section">
+  <h2>Skills</h2>
+
+  <div class="skills">
+    <span>Python</span>
+    <span>Pandas</span>
+    <span>NumPy</span>
+    <span>Machine Learning</span>
+    <span>Scikit-learn</span>
+    <span>Data Analysis</span>
+    <span>GitHub</span>
+  </div>
+</section>  
 
 <!-- THREE JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
