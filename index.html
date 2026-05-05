@@ -1,114 +1,176 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Akanksha Srivastava | Portfolio</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Akanksha Srivastava | Portfolio</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0f172a;
-      color: white;
-      text-align: center;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
 
-    header {
-      padding: 50px 20px;
-      background: linear-gradient(135deg, #6366f1, #8b5cf6);
-    }
+<style>
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  color: white;
+  overflow-x: hidden;
+}
 
-    h1 {
-      font-size: 40px;
-      margin: 10px 0;
-    }
+/* PARTICLE BACKGROUND */
+#particles-js {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: #0f172a;
+  z-index: -1;
+}
 
-    .tagline {
-      font-size: 18px;
-      opacity: 0.9;
-    }
+/* NAVBAR */
+nav {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  text-align: center;
+  padding: 15px;
+  background: rgba(0,0,0,0.3);
+  backdrop-filter: blur(10px);
+}
 
-    section {
-      padding: 40px 20px;
-    }
+nav a {
+  color: #cbd5f5;
+  margin: 0 15px;
+  text-decoration: none;
+}
 
-    .skills span {
-      display: inline-block;
-      margin: 10px;
-      padding: 10px 15px;
-      background: #1e293b;
-      border-radius: 20px;
-    }
+/* HERO */
+.hero {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
-    .project {
-      background: #1e293b;
-      margin: 20px auto;
-      padding: 20px;
-      max-width: 400px;
-      border-radius: 10px;
-    }
+/* GLASS CARD */
+.glass {
+  background: rgba(255,255,255,0.1);
+  padding: 30px;
+  border-radius: 20px;
+  backdrop-filter: blur(15px);
+  text-align: center;
+}
 
-    a {
-      color: #60a5fa;
-      text-decoration: none;
-    }
+/* TYPING */
+#typing {
+  color: #6366f1;
+  font-size: 22px;
+}
 
-    footer {
-      padding: 20px;
-      background: #020617;
-    }
-  </style>
+/* SECTIONS */
+section {
+  padding: 80px 20px;
+  text-align: center;
+}
+
+/* PROJECT */
+.project {
+  background: rgba(255,255,255,0.1);
+  margin: 20px auto;
+  padding: 20px;
+  max-width: 400px;
+  border-radius: 15px;
+  transition: 0.3s;
+}
+
+.project:hover {
+  transform: scale(1.05);
+}
+
+/* BUTTON */
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #6366f1;
+  border-radius: 20px;
+  text-decoration: none;
+  color: white;
+}
+
+</style>
 </head>
 
 <body>
 
-<header>
-  <h1>Akanksha Srivastava</h1>
-  <p class="tagline">Data Science Enthusiast | Machine Learning Learner</p>
-</header>
+<div id="particles-js"></div>
 
-<section>
-  <h2>👩‍💻 About Me</h2>
-  <p>
-    Passionate about Data Science and Machine Learning.  
-    I love turning data into insights and building real-world projects.
-  </p>
-</section>
+<!-- NAVBAR -->
+<nav>
+  <a href="#about">About</a>
+  <a href="#projects">Projects</a>
+  <a href="#contact">Contact</a>
+</nav>
 
-<section>
-  <h2>🧠 Skills</h2>
-  <div class="skills">
-    <span>Python</span>
-    <span>Pandas</span>
-    <span>NumPy</span>
-    <span>Machine Learning</span>
-    <span>GitHub</span>
+<!-- HERO -->
+<div class="hero">
+  <div class="glass">
+    <h1>Akanksha Srivastava</h1>
+    <p id="typing"></p>
   </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <h2>About Me</h2>
+  <p>Passionate Data Science Enthusiast building ML projects.</p>
 </section>
 
-<section>
-  <h2>🚀 Projects</h2>
+<!-- PROJECTS -->
+<section id="projects">
+  <h2>Projects</h2>
 
   <div class="project">
     <h3>Telecom Churn Prediction</h3>
-    <p>ML model to predict customer churn with 92% accuracy.</p>
-    <a href="#">View Project</a>
+    <p>92% accuracy ML model</p>
+    <a href="#" class="btn">View Project</a>
   </div>
 
 </section>
 
-<section>
-  <h2>📫 Contact</h2>
-  <p>
-    <a href="https://www.linkedin.com/in/akanksha-srivastava-20a43623b/">LinkedIn</a> |
-    <a href="https://github.com/khushigithub1">GitHub</a>
-  </p>
+<!-- CONTACT -->
+<section id="contact">
+  <h2>Contact</h2>
+  <a href="https://www.linkedin.com/in/akanksha-srivastava-20a43623b/" class="btn">LinkedIn</a>
 </section>
 
-<footer>
-  <p>© 2026 Akanksha Srivastava</p>
-</footer>
+<!-- JS -->
+<script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+
+<script>
+// PARTICLES
+particlesJS("particles-js", {
+  particles: {
+    number: { value: 80 },
+    size: { value: 3 },
+    move: { speed: 2 }
+  }
+});
+
+// TYPING EFFECT
+const text = ["Data Science Enthusiast", "Machine Learning Learner", "Future Data Scientist"];
+let i = 0, j = 0, current = "", isDeleting = false;
+
+function type() {
+  current = text[i];
+  if (!isDeleting) {
+    document.getElementById("typing").innerHTML = current.substring(0, j++);
+    if (j > current.length) { isDeleting = true; setTimeout(type, 1000); return; }
+  } else {
+    document.getElementById("typing").innerHTML = current.substring(0, j--);
+    if (j < 0) { isDeleting = false; i = (i + 1) % text.length; }
+  }
+  setTimeout(type, isDeleting ? 50 : 100);
+}
+type();
+</script>
 
 </body>
 </html>
