@@ -22,6 +22,18 @@ body {
   overflow: hidden;
 }
 
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(
+    rgba(11, 15, 25, 0.85),
+    rgba(11, 15, 25, 0.95)
+  );
+  z-index: -1;
+}
+
+  
 /* Logo */
 .logo {
   position: absolute;
@@ -117,16 +129,27 @@ canvas {
 
 <canvas id="bg"></canvas>
 
-<div class="content">
-  <div class="glass">
+<div class="hero">
+  <div class="hero-left">
     <h1>Akanksha Srivastava</h1>
-    <p class="role">Data Science | Machine Learning</p>
+    <p class="role">Machine Learning Engineer</p>
+    <p class="desc">
+      Turning data into intelligent solutions 🚀
+    </p>
 
-    <a href="#" class="btn primary">View Projects</a>
-    <a href="#" class="btn secondary">Contact</a>
+    <div class="buttons">
+      <a href="#" class="btn primary">View Projects</a>
+      <a href="#" class="btn secondary">Contact Me</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <img src="your-image.jpg" alt="profile">
   </div>
 </div>
 
+
+  
 <script>
 // Particle Background
 const canvas = document.getElementById("bg");
