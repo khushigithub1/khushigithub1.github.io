@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Akanksha | Portfolio</title>
 
-<!-- Google Font -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
@@ -22,121 +21,84 @@ body {
   overflow-x: hidden;
 }
 
+/* BACKGROUND OVERLAY */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background: linear-gradient(
-    rgba(11, 15, 25, 0.85),
-    rgba(11, 15, 25, 0.95)
-  );
+  background: linear-gradient(rgba(11,15,25,0.85), rgba(11,15,25,0.95));
   z-index: -1;
 }
 
-  
-/* Logo */
+/* LOGO */
 .logo {
-  position: absolute;
+  position: fixed;
   top: 20px;
   left: 30px;
   font-weight: 600;
   font-size: 18px;
+  z-index: 10;
 }
 
-/* Center Content */
-.content {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* Glass Card */
-.glass {
-  position: relative;
-  padding: 40px 60px;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(20px);
-  text-align: center;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.5);
-}
-
-/* HERO SECTION */
+/* HERO */
 .hero {
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: center;
   padding: 0 8%;
+  gap: 80px;
 }
 
-/* LEFT SIDE */
 .hero-left {
-  max-width: 500px;
+  flex: 1;
+  max-width: 550px;
 }
 
 .hero-left h1 {
-  font-size: 48px;
-  font-weight: 600;
-}
-
-.desc {
-  margin: 15px 0;
-  opacity: 0.8;
-  line-height: 1.6;
-}
-
-/* RIGHT SIDE IMAGE */
-.hero-right img {
-  width: 280px;
-  border-radius: 20px;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.6);
-}
-
-/* BUTTON GROUP */
-.buttons {
-  margin-top: 20px;
-}  
-
-/* Glow Effect */
-.glass::before {
-  content: "";
-  position: absolute;
-  width: 200px;
-  height: 200px;
-  background: radial-gradient(circle, rgba(124,131,255,0.3), transparent);
-  top: -50px;
-  right: -50px;
-  filter: blur(80px);
-  z-index: -1;
-}
-
-/* Text */
-.glass h1 {
-  font-size: 42px;
-  font-weight: 600;
+  font-size: 52px;
 }
 
 .role {
   margin-top: 10px;
   color: #7c83ff;
-  font-size: 18px;
 }
 
-/* Buttons */
+.desc {
+  margin: 20px 0;
+  opacity: 0.85;
+  line-height: 1.6;
+}
+
+.hero-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.hero-right img {
+  width: 320px;
+  border-radius: 20px;
+  animation: float 4s ease-in-out infinite;
+}
+
+/* FLOAT ANIMATION */
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+/* BUTTONS */
 .btn {
   padding: 10px 22px;
-  margin: 12px 8px 0;
   border-radius: 25px;
   text-decoration: none;
-  font-size: 14px;
-  transition: 0.3s ease;
-  display: inline-block;
+  margin-right: 10px;
 }
 
 .primary {
-  background: linear-gradient(135deg, #6366f1, #7c83ff);
+  background: linear-gradient(135deg,#6366f1,#7c83ff);
   color: white;
 }
 
@@ -145,12 +107,55 @@ body::before {
   color: #6366f1;
 }
 
-.btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(99,102,241,0.4);
+/* SECTION */
+.section {
+  padding: 100px 20px;
+  text-align: center;
 }
 
-/* Canvas Background */
+/* GLASS CARD */
+.glass {
+  max-width: 800px;
+  margin: auto;
+  padding: 40px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(15px);
+}
+
+/* SKILLS */
+.skills {
+  margin-top: 20px;
+}
+
+.skills span {
+  display: inline-block;
+  margin: 10px;
+  padding: 10px 20px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.08);
+  transition: 0.3s;
+}
+
+.skills span:hover {
+  background: #6366f1;
+  transform: scale(1.1);
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    gap: 40px;
+  }
+
+  .hero-right img {
+    width: 220px;
+  }
+}
+
+/* CANVAS */
 canvas {
   position: fixed;
   top: 0;
@@ -163,32 +168,55 @@ canvas {
 <body>
 
 <div class="logo">Akanksha</div>
-
 <canvas id="bg"></canvas>
 
-<div class="hero">
+<!-- HERO -->
+<section class="hero">
   <div class="hero-left">
     <h1>Akanksha Srivastava</h1>
-    <p class="role">Machine Learning Engineer</p>
+    <p class="role">Machine Learning Enthusiast</p>
     <p class="desc">
       Turning data into intelligent solutions 🚀
     </p>
 
-    <div class="buttons">
-      <a href="#" class="btn primary">View Projects</a>
-      <a href="#" class="btn secondary">Contact Me</a>
-    </div>
+    <a href="#about" class="btn primary">About Me</a>
+    <a href="#skills" class="btn secondary">Skills</a>
   </div>
 
   <div class="hero-right">
-    <img src="your-image.jpg" alt="profile">
+    <img src="https://cdn.dribbble.com/users/1162077/screenshots/3848914/programmer.gif">
   </div>
-</div>
+</section>
 
+<!-- ABOUT -->
+<section id="about" class="section">
+  <div class="glass">
+    <h2>About Me</h2>
+    <p>
+      I'm a passionate Data Science Enthusiast with strong interest in Machine Learning
+      and solving real-world problems. I enjoy transforming raw data into meaningful insights
+      and building intelligent systems.
+    </p>
+  </div>
+</section>
 
-  
+<!-- SKILLS -->
+<section id="skills" class="section">
+  <h2>Skills</h2>
+
+  <div class="skills">
+    <span>Python</span>
+    <span>Pandas</span>
+    <span>NumPy</span>
+    <span>Machine Learning</span>
+    <span>Scikit-learn</span>
+    <span>Data Analysis</span>
+    <span>GitHub</span>
+  </div>
+</section>
+
+<!-- PARTICLE SCRIPT -->
 <script>
-// Particle Background
 const canvas = document.getElementById("bg");
 const ctx = canvas.getContext("2d");
 
