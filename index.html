@@ -3,148 +3,210 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Akanksha | 3D Portfolio</title>
+<title>Akanksha | Portfolio</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600&display=swap" rel="stylesheet">
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-body {
+* {
   margin: 0;
-  overflow-x: hidden;
-  font-family: 'Inter', sans-serif;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: #0b0f19;
+  color: white;
+  overflow: hidden;
+}
+
+/* Logo */
+.logo {
+  position: absolute;
+  top: 20px;
+  left: 30px;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+/* Center Content */
+.content {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Glass Card */
+.glass {
+  position: relative;
+  padding: 40px 60px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  text-align: center;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+}
+
+/* Glow Effect */
+.glass::before {
+  content: "";
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(124,131,255,0.3), transparent);
+  top: -50px;
+  right: -50px;
+  filter: blur(80px);
+  z-index: -1;
+}
+
+/* Text */
+.glass h1 {
+  font-size: 42px;
+  font-weight: 600;
+}
+
+.role {
+  margin-top: 10px;
+  color: #7c83ff;
+  font-size: 18px;
+}
+
+/* Buttons */
+.btn {
+  padding: 10px 22px;
+  margin: 12px 8px 0;
+  border-radius: 25px;
+  text-decoration: none;
+  font-size: 14px;
+  transition: 0.3s ease;
+  display: inline-block;
+}
+
+.primary {
+  background: linear-gradient(135deg, #6366f1, #7c83ff);
   color: white;
 }
 
-/* CANVAS */
+.secondary {
+  border: 1px solid #6366f1;
+  color: #6366f1;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(99,102,241,0.4);
+}
+
+/* Canvas Background */
 canvas {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: -1;
+  z-index: -2;
 }
-
-/* CONTENT */
-.content {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-  padding-top: 20vh;
-}
-
-/* GLASS BOX */
-.glass {
-  display: inline-block;
-  padding: 40px;
-  border-radius: 20px;
-  background: rgba(255,255,255,0.1);
-  backdrop-filter: blur(15px);
-}
-
-/* BUTTON */
-.btn {
-  margin-top: 20px;
-  display: inline-block;
-  padding: 10px 20px;
-  background: #6366f1;
-  border-radius: 20px;
-  text-decoration: none;
-  color: white;
-}
-
-.section {
-  padding: 100px 20px;
-  text-align: center;
-}
-
-.skills span {
-  display: inline-block;
-  margin: 10px;
-  padding: 10px 20px;
-  border-radius: 20px;
-  background: rgba(255,255,255,0.1);
-  transition: 0.3s;
-}
-
-.skills span:hover {
-  background: #6366f1;
-  transform: scale(1.1);
-}  
 </style>
 </head>
 
 <body>
 
+<div class="logo">Akanksha</div>
+
+<canvas id="bg"></canvas>
+
 <div class="content">
   <div class="glass">
     <h1>Akanksha Srivastava</h1>
-    <p>Data Science | Machine Learning</p>
-    <a href="#" class="btn">View Projects</a>
+    <p class="role">Data Science | Machine Learning</p>
+
+    <a href="#" class="btn primary">View Projects</a>
+    <a href="#" class="btn secondary">Contact</a>
   </div>
 </div>
 
-<section id="about" class="section">
-  <div class="glass">
-    <h2>About Me</h2>
-    <p>
-      I'm a passionate <b>Data Science Enthusiast</b> who loves working with data 
-      and building machine learning models to solve real-world problems.
-    </p>
-  </div>
-</section>
-
-<section id="skills" class="section">
-  <h2>Skills</h2>
-
-  <div class="skills">
-    <span>Python</span>
-    <span>Pandas</span>
-    <span>NumPy</span>
-    <span>Machine Learning</span>
-    <span>Scikit-learn</span>
-    <span>Data Analysis</span>
-    <span>GitHub</span>
-  </div>
-</section>  
-
-<!-- THREE JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-
 <script>
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+// Particle Background
+const canvas = document.getElementById("bg");
+const ctx = canvas.getContext("2d");
 
-const renderer = new THREE.WebGLRenderer();
-renderer.setSize(window.innerWidth, window.innerHeight);
-document.body.appendChild(renderer.domElement);
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
-// GEOMETRY
-const geometry = new THREE.TorusKnotGeometry(1, 0.3, 100, 16);
-const material = new THREE.MeshStandardMaterial({ color: 0x6366f1 });
-const torus = new THREE.Mesh(geometry, material);
-scene.add(torus);
+let particlesArray = [];
 
-// LIGHT
-const light = new THREE.PointLight(0xffffff, 1);
-light.position.set(5,5,5);
-scene.add(light);
+class Particle {
+  constructor() {
+    this.x = Math.random() * canvas.width;
+    this.y = Math.random() * canvas.height;
+    this.size = 2;
+    this.speedX = Math.random() * 0.5 - 0.25;
+    this.speedY = Math.random() * 0.5 - 0.25;
+  }
 
-camera.position.z = 5;
+  update() {
+    this.x += this.speedX;
+    this.y += this.speedY;
 
-// ANIMATION
-function animate() {
-  requestAnimationFrame(animate);
-  torus.rotation.x += 0.01;
-  torus.rotation.y += 0.01;
-  renderer.render(scene, camera);
+    if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+    if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+  }
+
+  draw() {
+    ctx.fillStyle = "white";
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.fill();
+  }
 }
 
+function init() {
+  particlesArray = [];
+  for (let i = 0; i < 80; i++) {
+    particlesArray.push(new Particle());
+  }
+}
+
+function connect() {
+  for (let a = 0; a < particlesArray.length; a++) {
+    for (let b = a; b < particlesArray.length; b++) {
+      let dx = particlesArray[a].x - particlesArray[b].x;
+      let dy = particlesArray[a].y - particlesArray[b].y;
+      let distance = dx * dx + dy * dy;
+
+      if (distance < 12000) {
+        ctx.strokeStyle = "rgba(255,255,255,0.1)";
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+        ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+        ctx.stroke();
+      }
+    }
+  }
+}
+
+function animate() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  particlesArray.forEach(p => {
+    p.update();
+    p.draw();
+  });
+
+  connect();
+  requestAnimationFrame(animate);
+}
+
+init();
 animate();
 
-// RESIZE FIX
-window.addEventListener('resize', () => {
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  camera.aspect = window.innerWidth/window.innerHeight;
-  camera.updateProjectionMatrix();
+window.addEventListener("resize", () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  init();
 });
 </script>
 
